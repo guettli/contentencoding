@@ -34,7 +34,7 @@ This way, the above html snippet just works, and the static gzipped files can be
 ## Command-Line Usage:
 
 ```
-❯ go run github.com/guettli/contentencoding@latest
+❯ go run github.com/guettli/contentencoding/cmd@latest
 
 Listening on http://localhost:1234
 ```
