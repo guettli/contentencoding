@@ -56,7 +56,8 @@ import (
 )
 
     ...
-	http.Handle("/static/", http.StripPrefix("/static/", contentencoding.FileServer(http.Dir("./static")))))
+    http.Handle("/static/", http.StripPrefix("/static/",
+        contentencoding.FileServer(http.Dir("./static"))))
 ```
 
 ## Feedback is welcome
