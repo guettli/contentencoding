@@ -18,7 +18,11 @@ But this means, you can't use the file like in this html snippet:
 <script src="/static/foo.js.gz"></script>
 ```
 
-The `contentencoding.FileServer` of this Go package serves the above file with these headers:
+The error message of the browser:
+
+> Uncaught SyntaxError: Invalid or unexpected token (at foo.js.gz:1:1)
+
+The `contentencoding.FileServer` of this Go package serves the above file with these headers, so that the browser is able to consume these files.
 
 > Content-Type: text/css
 > 
