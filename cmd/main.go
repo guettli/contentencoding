@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+
+	"github.com/guettli/contentencoding"
 )
 
 func usage() {
@@ -40,7 +42,7 @@ func main() {
 		usage()
 		os.Exit(0)
 	}
-	http.Handle("/", FileServer(http.Dir(directory)))
+	http.Handle("/", contentencoding.FileServer(http.Dir(directory)))
 	fmt.Printf("Listening on http://%s\n", addr)
 	err := http.ListenAndServe(addr, nil)
 	fmt.Println(err.Error())
