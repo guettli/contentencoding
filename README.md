@@ -1,9 +1,35 @@
 # contentencoding: Serve gzipped files with Content-Encoding
 
+
+Serve files from the local directory via http.
+
+Gzipped files like foo.css.gz will be served with Content-Encoding gzip and the
+appropriate Content-Type.
+
+The Content-Type gets determined by the file extension with the help of [mime.TypeByExtension()](https://pkg.go.dev/mime#TypeByExtension)
+
+## Use case
+
+If you want to use a file like `foo.js.gz`, then most web servers will serve with the Content-Type "application/gzip".
+
+But this means, you can't use the file like in this html snippet:
+
+```
+<script src="/static/foo.js.gz"></script>
+```
+
+The `contentencoding.FileServer` of this Go package serves the above file with these headers:
+
+> Content-Type: text/css
+> Content-Encoding: gzip
+
+This way, the above html snippet just works.
+
+
 ## Command-Line Usage:
 
 ```
-❯ go run github.com/guettli/contentencoding@latest 
+❯ go run github.com/guettli/contentencoding@latest
 
 Listening on http://localhost:1234
 ```
@@ -15,3 +41,19 @@ Arguments:
 ## Golang Package
 
 
+If you want to serve the directory "static" under the URL prefix "/static", you can use this Go code:
+
+```
+import (
+	"net/http"
+
+	"github.com/guettli/contentencoding"
+)
+
+    ...
+	http.Handle("/static/", http.StripPrefix("/static/", contentencoding.FileServer(http.Dir("./static")))))
+```
+
+## Feedback is welcome
+
+Feel free to create an issue at Github to provide feedback.
