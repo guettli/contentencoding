@@ -8,17 +8,16 @@ import (
 )
 
 // ContentEncodingFileServer is a thin wrapper around
-// http.FileServer(). It servers zipped files with the appropriate
-// Content-Encoding http response header, so that you can use zipped
-// files directly.
+// http.FileServer(). It serves gzipped files with the appropriate
+// Content-Encoding, so that you can use zipped files directly.
 // Example: You want to use that in html:
 //
 //	<script src="/static/htmx.min.js.gz"></script>
 //
 // Go code:
-// http.Handle("/static/", http.StripPrefix("/static/",
 //
-//	contentencodingfileserver.FileServer(http.Dir("./static")))))
+//	http.Handle("/static/", http.StripPrefix("/static/",
+//		contentencodingfileserver.FileServer(http.Dir("./static"))))
 func FileServer(root http.FileSystem) http.Handler {
 	return SetContentEncodingHandler(http.FileServer(root))
 }

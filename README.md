@@ -43,8 +43,8 @@ Arguments:
 
 > [address (default: localhost:1234)] [directory (default: .)]
 
-## Golang Package
 
+## Golang Package
 
 If you want to serve the directory "static" under the URL prefix "/static", you can use this Go code:
 
